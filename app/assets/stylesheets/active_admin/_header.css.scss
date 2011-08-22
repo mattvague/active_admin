@@ -99,8 +99,11 @@
   }
 
   #utility_nav { 
-    position: absolute; right: 25px; top: 10px; 
     color: #aaa;
+    position: absolute;
+    right: 200px;
+    top: 10px; 
+    
     span, a { margin-left: 10px; }
 
     a { text-decoration: none; }

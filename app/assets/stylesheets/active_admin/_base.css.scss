@@ -3,6 +3,8 @@
 
 // Reset Away!
 @include global-reset;
+@include reset-search-fields;    
+
 
 // Partials
 @import "active_admin/typography";
@@ -10,6 +12,7 @@
 @import "active_admin/forms";
 @import "active_admin/components/comments";
 @import "active_admin/components/flash_messages";
+@import "active_admin/components/global_search";
 @import "active_admin/components/date_picker";
 
 body {

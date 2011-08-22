@@ -6,7 +6,7 @@ module ActiveAdmin
     class HeaderRenderer < ::ActiveAdmin::Renderer
 
       def to_html
-        title + global_navigation + utility_navigation
+        title + global_navigation + utility_navigation + search + results
       end
 
       protected
@@ -32,6 +32,61 @@ module ActiveAdmin
               html << link_to(I18n.t('active_admin.logout'), logout_path, :method => logout_method)
             end
           end
+        end
+      end
+      
+      def search
+        content_tag :form, :id => "global_search" do
+          content_tag :input, "", :type => "search"
+        end
+      end
+      
+      # TEMP FOR DEV
+      
+      def results
+        content_tag :div, :id => "global_search_results_dropdown" do
+          results = content_tag :div, :class => "global_search_results_group" do
+            inner = content_tag :h3, "Transactions"
+            inner += content_tag :ul do
+              items = content_tag :li, :class => "global_search_result" do
+                content_tag :a, :href => "#", :class => "global_search_result" do
+                  inner = content_tag :strong, "Transaction #1999"
+                  inner += content_tag :p, "Amount: $6,412.60"
+                  inner
+                end
+              end
+              items += content_tag :li, :class => "global_search_result" do
+                content_tag :a, :href => "#", :class => "global_search_result" do
+                  inner = content_tag :strong, "Transaction #1999"
+                  inner += content_tag :p, "Amount: $6,412.60"
+                  inner
+                end
+              end
+              
+              items
+            end
+            
+            inner
+          end
+          
+          results += content_tag :div, :class => "global_search_results_group" do
+            inner = content_tag :h3, "Users"
+            inner += content_tag :ul do
+              content_tag :li, :class => "global_search_result" do
+                content_tag :a, :href => "#" do
+                  inner = content_tag :strong, "Quatchi Sasquatch"
+                  inner += content_tag :p, "Joined on: November 15th"
+                  inner
+                end
+              end
+            end
+            
+            inner
+          end
+          
+          results += content_tag :a, "Show all results (1000+)", :class => "show_all_link", :href => "#"
+          
+          results
         end
       end
 
