@@ -1,114 +1,112 @@
-#header { 
-  #global_search {
-    background: transparent url(active_admin_image_path('global_search_seperator.png')) 0px 0px no-repeat;
-    display: inline-block;
-    padding-left: 15px;
-    position: absolute;
-    right: 20px;
-    top: 8px; 
+#global_search {
+  background: transparent url(active_admin_image_path('global_search_seperator.png')) 0px 0px no-repeat;
+  display: inline-block;
+  padding-left: 15px;
+  position: absolute;
+  right: 20px;
+  top: 8px; 
 
-    input[type=search] {
-      @include rounded-pill;
-      @include shadow(#6d777e, 0px, 1px, 0px);
-      background: #FFF url(active_admin_image_path('search_field_icon.png')) 5px 4px no-repeat;
-      border: solid 1px rgba(0,0,0,0.75);
-      padding: 3px 0 3px 12px;
-      -webkit-appearance: textfield;
-      -webkit-box-sizing: content-box;
-      width: 150px
-    }
+  input[type=search] {
+    @include rounded-pill;
+    @include shadow(#6d777e, 0px, 1px, 0px);
+    background: #FFF url(active_admin_image_path('search_field_icon.png')) 5px 4px no-repeat;
+    border: solid 1px rgba(0,0,0,0.75);
+    padding: 3px 0 3px 12px;
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    width: 150px
+  }
+
+}
+
+#global_search_results_dropdown {
+  // Temporary position stuff
+  position: absolute;
+  right: 30px;
+  top: 37px;
   
+  @include shadow(rgba(0,0,0,0.4), 0px, 1px, 5px);
+  background-color: #f4f5f5;
+  text-shadow: none;
+  z-index: 100;
+  
+  .global_search_results_group {
+    @include clearfix;
+    border-top: solid 1px #E3E3E3;
+    
   }
+  
+  h3 {
+    @include text-shadow(#FFFFFF, 0, 1px, 0);
+    color: #a3a8ab;
+    float: left;
+    font-size: 0.95em;
+    font-weight: bold;
+    text-align: right;
+    line-height: 1.2em;
+    padding: 10px;
+    width: 70px;
+  }
+  
+  ul {
+    background-color: #fff;
+    border-left: solid 1px #E3E3E3;
+    float: left;
+    display: block;
+    margin: 0px;
+    padding: 0;
+    list-style: none;
+    width: 190px;
 
-  #global_search_results_dropdown {
-    // Temporary position stuff
-    position: absolute;
-    right: 30px;
-    top: 37px;
-    
-    @include shadow(rgba(0,0,0,0.4), 0px, 1px, 5px);
-    background-color: #f4f5f5;
-    text-shadow: none;
-    z-index: 100;
-    
-    .global_search_results_group {
-      @include clearfix;
-      border-top: solid 1px #E3E3E3;
-      
-    }
-    
-    h3 {
-      @include text-shadow(#FFFFFF, 0, 1px, 0);
-      color: #a3a8ab;
-      float: left;
+    li {
+      border-bottom: solid 1px #E3E3E3;
       font-size: 0.95em;
-      font-weight: bold;
-      text-align: right;
-      line-height: 1.2em;
-      padding: 10px;
-      width: 70px;
-    }
-    
-    ul {
-      background-color: #fff;
-      border-left: solid 1px #E3E3E3;
-      float: left;
-      display: block;
-      margin: 0px;
-      padding: 0;
-      list-style: none;
-      width: 190px;
-
-      li {
-        border-bottom: solid 1px #E3E3E3;
-        font-size: 0.95em;
+      
+      a {
+        display: block;
+        text-decoration: none;
+        line-height: 1.2em;
+        padding: 10px;
         
-        a {
-          display: block;
-          text-decoration: none;
-          line-height: 1.2em;
-          padding: 10px;
+        &:active, &:hover, &.selected {
+          @include gradient(#4580a7, #396893);
           
-          &:active, &:hover, &.selected {
-            @include gradient(#4580a7, #396893);
-            
-            strong, p {
-              @include text-shadow(rgba(0,0,0,0.2), 0, 1px, 0);
-              color: #FFF;
-            }
+          strong, p {
+            @include text-shadow(rgba(0,0,0,0.2), 0, 1px, 0);
+            color: #FFF;
           }
-          
         }
         
-        &:last-child {
-          border-bottom: none;
-        }
       }
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
 
-      strong {
-        color: #323537;
-        display: inline-block;
-        margin-bottom: 2px;
-      }
-      
-      p {
-        color: #828587;
-        line-height: 1.4em;
-        margin-bottom: 0px;
-      }
-      
+    strong {
+      color: #323537;
+      display: inline-block;
+      margin-bottom: 2px;
     }
     
-    .show_all_link {
-      background-color: #FFF;
-      border-top: solid 1px #E3E3E3;
-      clear: both;
-      color: $link-color;
-      display: block;
-      font-size: 0.90em;
-      padding: 7px 0;
-      text-align: center;
+    p {
+      color: #828587;
+      line-height: 1.4em;
+      margin-bottom: 0px;
     }
     
   }
+  
+  .show_all_link {
+    background-color: #FFF;
+    border-top: solid 1px #E3E3E3;
+    clear: both;
+    color: $link-color;
+    display: block;
+    font-size: 0.90em;
+    padding: 7px 0;
+    text-align: center;
+  }
+  
 }
