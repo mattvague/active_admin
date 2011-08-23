@@ -12,9 +12,10 @@
       @include shadow(#6d777e, 0px, 1px, 0px);
       background: #FFF url(active_admin_image_path('search_field_icon.png')) 5px 4px no-repeat;
       border: solid 1px rgba(0,0,0,0.75);
-      padding: 3px 10px 3px 20px;
+      padding: 3px 0 3px 12px;
       -webkit-appearance: textfield;
       -webkit-box-sizing: content-box;
+      width: 150px
     }
   
   }
@@ -38,14 +39,14 @@
     
     h3 {
       @include text-shadow(#FFFFFF, 0, 1px, 0);
-      color: #b2b5b8;
+      color: #a3a8ab;
       float: left;
       font-size: 0.95em;
       font-weight: bold;
       text-align: right;
-      padding: 15px;
-      padding-left: 0px;
-      width: 90px;
+      line-height: 1.2em;
+      padding: 10px;
+      width: 70px;
     }
     
     ul {
@@ -56,20 +57,23 @@
       margin: 0px;
       padding: 0;
       list-style: none;
-      width: 160px;
+      width: 190px;
 
       li {
         border-bottom: solid 1px #E3E3E3;
+        font-size: 0.95em;
         
         a {
           display: block;
-          padding: 12px;
           text-decoration: none;
+          line-height: 1.2em;
+          padding: 10px;
           
           &:active, &:hover, &.selected {
-            background-color: $link-color;
+            @include gradient(#4580a7, #396893);
             
             strong, p {
+              @include text-shadow(rgba(0,0,0,0.2), 0, 1px, 0);
               color: #FFF;
             }
           }
@@ -83,12 +87,13 @@
 
       strong {
         color: #323537;
-        font-size: 0.95em;
+        display: inline-block;
+        margin-bottom: 2px;
       }
       
       p {
         color: #828587;
-        font-size: 0.9em;
+        line-height: 1.4em;
         margin-bottom: 0px;
       }
       
@@ -100,8 +105,8 @@
       clear: both;
       color: $link-color;
       display: block;
-      font-size: 0.95em;
-      padding: 8px 0;
+      font-size: 0.90em;
+      padding: 7px 0;
       text-align: center;
     }
     
