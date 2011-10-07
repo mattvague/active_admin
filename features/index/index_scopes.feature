@@ -26,6 +26,22 @@ Feature: Index Scoping
     And I should see the scope "All" with the count 10
     And I should see 10 posts in the table
 
+  Scenario: Viewing resources when scoping
+    Given 10 posts exist
+    And an index configuration of:
+      """
+      ActiveAdmin.register Post do
+        scope :all, :default => true
+        scope :first_three do |posts|
+          posts.limit(3)
+        end
+      end
+      """
+    Then I should see the scope "First Three" with the count 3
+    When I follow "First Three"
+    Then I should see the scope "First Three" selected
+    And I should see 3 posts in the table
+
   Scenario: Viewing resources with mulitple scopes as blocks
     Given 10 posts exist
     And an index configuration of:
