@@ -26,6 +26,14 @@ a.table_tools_button {
   padding: 4px 14px 4px;
   position: relative;
   -webkit-transition: all 0.08s ease-in;
+  
+  &.selected {
+    @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #FFF inset, 0 0 10px rgba(120,175,220,0.36));
+    
+    &:active {
+      @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #FFF inset, 0 0 10px rgba(120,175,220,0.36), 0, 1px, 2px, rgba(0,0,0,0.30));
+    }
+  }
 
   &.dropdown_button {
     padding-right: 20px;
@@ -39,17 +47,6 @@ a.table_tools_button {
       top: 8px;
       right: 9px;
       width: 0;
-    }
-  }
-    
-  &.selected {
-    background: #F0F0F0;
-    @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.1) inset);
-    color: #8a8a8a;
-    cursor: default;
-    
-    &:hover {
-      color: #8a8a8a;
     }
   }
 
@@ -90,13 +87,13 @@ a.table_tools_button {
     
     &.selected {
       a {
-        background: #F0F0F0;
-        @include box-shadow(0 1px 1px 0 rgba(0,0,0,0.1) inset);
-        color: #8a8a8a;
+        background: #ededed;
+        @include box-shadow(0 1px 0px 0 rgba(0,0,0,0.06) inset);
+        color: #989ca0;
         cursor: default;
         
         &:hover {
-          color: #8a8a8a;
+          color: #989ca0;
         }
       }
     }
