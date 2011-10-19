@@ -5,9 +5,14 @@ module ActiveAdmin
 
         def build(*args)
           super
-          add_classes_to_body
-          build_active_admin_head
-          build_page
+          
+          if params["_pjax"] == "true"
+            main_content
+          else 
+            add_classes_to_body
+            build_active_admin_head
+            build_page
+          end
         end
 
         private
