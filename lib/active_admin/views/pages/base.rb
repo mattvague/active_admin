@@ -6,7 +6,8 @@ module ActiveAdmin
         def build(*args)
           super
           
-          if params["_pjax"] == "true"
+          if request.headers['X-PJAX']
+            params["_pjax"] = nil
             main_content
           else 
             add_classes_to_body

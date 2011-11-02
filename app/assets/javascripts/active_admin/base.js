@@ -10,7 +10,11 @@ $(function(){
     return false;
   });
   
-  $("#tabs a").pjax("#main_content");
-  $(".pagination .next a").pjax("#main_content");
+  $(".pagination a").pjax("#main_content");
+  $(".scopes a").pjax("#main_content");
+  
+  $("#main_content")
+    .bind('pjax:start', function() { /* do something */ })
+    .bind('pjax:end',   function() { /* do something */ });
   
 });
