@@ -53,7 +53,7 @@ Feature: STI Resource
     And I am on the index page for users
     When I follow "Edit"
     And I fill in "First name" with "Joe"
-    And I press "Update Publisher"
+    And I press "Update User"
     Then I should see "Publisher was successfully updated"
     And I should see "Joe"
 
