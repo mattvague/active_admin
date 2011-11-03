@@ -74,6 +74,23 @@ describe ActiveAdmin::FormBuilder do
       }.should raise_error(Formtastic::PolymorphicInputWithoutCollectionError)
     end
   end
+  
+  context "when model is registered as different name" do
+    let :body do
+      active_admin_form_for Post.new, :url => "admin/posts", :as => "blog_post" do |f|
+        f.inputs :title
+        f.buttons
+      end
+    end
+
+    describe "commit button" do
+      it "should use the model's registered name" do
+        body.should have_tag("input", :attributes => {  :type => "submit",
+                                                        :value => "Create Blog Post" })
+      end
+    end
+  end
+  
 
   describe "passing in options" do
     let :body do

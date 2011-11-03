@@ -71,7 +71,7 @@ module ActiveAdmin
               form.input :body, :input_html => {:size => "80x8"}, :label => false
             end
             form.buttons do
-              form.commit_button 'Add Comment'
+              form.commit_button I18n.t("active_admin.add_comment")
             end
           end
         end

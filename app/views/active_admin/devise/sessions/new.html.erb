@@ -9,7 +9,7 @@
       f.input :remember_me, :as => :boolean, :if =>  false  #devise_mapping.rememberable? }
     end
     f.buttons do
-      f.commit_button "Login"
+      f.commit_button :label =>t("active_admin.login")
     end
   end
   %>

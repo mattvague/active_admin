@@ -33,7 +33,14 @@ module ActiveAdmin
     end
 
     def commit_button(*args)
-      content = with_new_form_buffer{ super }
+      options = args.extract_options!
+      text = options.delete(:label) || args.shift
+
+      object_name = ActiveSupport::Inflector.titleize(self.object_name)
+
+      options[:label] = text || (self.object.persisted? ? I18n.t('active_admin.update_model', :model => object_name) : I18n.t('active_admin.create_model', :model => object_name))
+      
+      content = with_new_form_buffer{ super(args,options) }
       form_buffers.last << content.html_safe
     end
 

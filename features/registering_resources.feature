@@ -31,3 +31,5 @@ Feature: Registering Resources
     When I follow "View"
     Then I should see "Hello World"
     And I should be in the resource section for My Post
+    When I follow "Edit My Post"
+    Then I press "Update My Post"
