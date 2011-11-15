@@ -71,7 +71,7 @@ module ActiveAdmin
       def build_pagination
         options =  request.query_parameters.except(:commit, :format)
         options[:param_name] = @param_name if @param_name
-        
+
         text_node paginate(collection, options.symbolize_keys)
       end
 
@@ -110,9 +110,9 @@ module ActiveAdmin
           else;   I18n.t('active_admin.pagination.one_page', :model => entries_name, :n => collection.size)
           end
         else
-          offset = collection.current_page * active_admin_application.default_per_page
+          offset = collection.current_page * collection.size
           total  = collection.total_count
-          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => (offset - active_admin_application.default_per_page + 1), :to => offset > total ? total : offset, :total => total)
+          I18n.t('active_admin.pagination.multiple', :model => entries_name, :from => (offset - collection.size + 1), :to => offset > total ? total : offset, :total => total)
         end
       end
 
