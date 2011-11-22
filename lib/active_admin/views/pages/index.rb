@@ -61,7 +61,9 @@ module ActiveAdmin
 
         def build_scopes
           if active_admin_config.scopes.any?
-            scopes_renderer active_admin_config.scopes
+            div :class => "table_tools" do
+              scopes_renderer active_admin_config.scopes
+            end
           end
         end
 
