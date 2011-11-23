@@ -25,7 +25,6 @@ module ActiveAdmin
             build_scopes
           end
 
-          build_batch_action_popover
 
           if collection.any?
             render_index
@@ -37,6 +36,11 @@ module ActiveAdmin
             end
           end
           text_node('</form>'.html_safe)
+        end
+        
+        def build_extra
+          build_batch_action_popover
+          
         end
 
         protected
