@@ -12,70 +12,60 @@
   function AAPopover( element, options ) {
     this.element = element;
     this.$element = $(element);
-    
-    this.$popoverContent = null;
-    
-    
     this.options = $.extend( {}, defaults, options);
-    
-    if ($(this.$element.attr("href")).length > 0) {
-      this.$popoverContent = $(this.$element.attr("href"));
-    }
-    
-    // Create nipple
-    this.$popoverContent.prepend("<div class=\"popover_nipple\"></div>");
-    
-    
-    this._name = pluginName;
-    
-    this.isOpen = false;
-    
+
     this.init();
   }
   
   AAPopover.prototype.init = function() {
-    var _this = this;
-        
-    this.$popoverContent.hide();
+    var that = this;
+
+    this.$popover = null;
+
+    if ($(this.$element.attr("href")).length > 0) {
+      this.$popover = $(this.$element.attr("href"));
+    }
     
-    this.$popoverContent.addClass("popover");
+    // Create nipple
+    this.$popover.prepend("<div class=\"popover_nipple\"></div>");
+        
+    this.isOpen = false;
+        
+    this.$popover.hide();
+    
+    this.$popover.addClass("popover");
     
     if (this.options.autoOpen == true) {
       this.$element.bind('click', function(){
-        _this.open();
+        that.open();
         return false;
       });
     };
-    
-    $(document).bind('click', function() {
-      if (_this.isOpen == true) {
-        _this.close();
+
+    $('#wrapper').bind('click', function(e) {
+      if (that.isOpen == true) {
+        that.close();
       };
-    });
-    
-    this.$popoverContent.click(function(e){
-      e.stopPropagation();
-      e.preventDefault();
     });
   }
   
   AAPopover.prototype.open = function() {
     this.isOpen = true;
-    this.$popoverContent.fadeIn(this.options.fadeInDuration);
+    this.$popover.fadeIn(this.options.fadeInDuration);
     
     
     // Center the popover under the opening element
     
     var centerOfButtonFromLeft = this.$element.offset().left + this.$element.outerWidth() / 2;
-    var centerOfPopoverFromLeft = this.$popoverContent.outerWidth() / 2;
+    var centerOfPopoverFromLeft = this.$popover.outerWidth() / 2;
     var popoverLeftPos = centerOfButtonFromLeft - centerOfPopoverFromLeft;
-    this.$popoverContent.css('left', popoverLeftPos);
+    this.$popover.css('left', popoverLeftPos);
     
     // Center the nipple in the middle of the popover
     
     var bottomOfButtonFromTop = this.$element.offset().top + this.$element.outerHeight() + 10;
-    this.$popoverContent.css('top',  bottomOfButtonFromTop);
-    var $nipple = this.$popoverContent.find(".popover_nipple");
+    this.$popover.css('top',  bottomOfButtonFromTop);
+    var $nipple = this.$popover.find(".popover_nipple");
     var centerOfnippleFromLeft = $nipple.outerWidth() / 2;
     
     //console.log($nipple.outerWidth());
@@ -89,7 +79,7 @@
   
   AAPopover.prototype.close = function() {
     this.isOpen = false;
-    this.$popoverContent.fadeOut(this.options.fadeOutDuration);
+    this.$popover.fadeOut(this.options.fadeOutDuration);
   }
   
   AAPopover.prototype.destroy = function() {

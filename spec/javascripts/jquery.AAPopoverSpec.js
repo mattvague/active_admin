@@ -1,6 +1,11 @@
 describe("AAPopover", function() {
 
   beforeEach(function() {
+				
+    this.$wrapper = $(inject({
+      id: 'wrapper',
+    }));
+	
     this.$button = $(inject({
       el: 'a',
       id: 'my_popover_button',
@@ -15,7 +20,7 @@ describe("AAPopover", function() {
       fadeInDuration: 0,
       fadeOutDuration: 0,
     });
-        
+
     this.popover = this.$button.data("AAPopover");
   });
   
@@ -115,7 +120,8 @@ describe("AAPopover", function() {
     
     describe("when user clicks outside", function() {
       beforeEach(function() {
-        $(document).trigger("click");
+				this.$button.AAPopover('open');
+        $('#wrapper').trigger("click");
       });
       
       it("should close", function() {

@@ -34,6 +34,8 @@
 //-------------------------------------- Popover with action list
 
 .popover {
+	z-index: 1000;
+	
   ul.popover_contents {
     list-style-type: none;
     padding: 0;
