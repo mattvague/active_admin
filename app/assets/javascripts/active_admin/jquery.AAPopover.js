@@ -78,8 +78,8 @@
     var $nipple = this.$popoverContent.find(".popover_nipple");
     var centerOfnippleFromLeft = $nipple.outerWidth() / 2;
     
-    console.log($nipple.outerWidth());
-    console.log($nipple.width());
+    //console.log($nipple.outerWidth());
+    //console.log($nipple.width());
     
     var nippleLeftPos = centerOfPopoverFromLeft - centerOfnippleFromLeft;
     
@@ -100,21 +100,22 @@
   
   // Register as a jQuery plugin
   
-  $.fn[pluginName] = function(method_or_options) {
-    var popOver = null;
-    
-    if ( AAPopover.prototype[method_or_options] ) {
-      popover[method_or_options]();
-    } else if ( typeof method_or_options === 'object' || ! method_or_options ) {
-      return this.each(function(){
-        if (!$.data(this, pluginName)) {
-          $.data(this, pluginName, 
-            popover = new AAPopover(this, method_or_options));
+	$.fn[pluginName] = function( options ) {
+    return this.each(function () {
+      var $this = $(this);
+      var popOver = $this.data(pluginName);
+      
+      if ( typeof options === 'object' || ! options ) {
+        if ( !popOver ) {
+          popOver = new AAPopover($this, options);
+          $this.data(pluginName, popOver);
         }
-      });
-    } else {
-      $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
-    }    
-  }
+      } else if ( typeof options === 'string' ) {
+        popOver[options]();
+      } else {
+        $.error( 'Method ' +  options + ' does not exist on ' + pluginName );
+      }
+    });
+  };
   
 })( jQuery, window, document );

@@ -2,9 +2,11 @@
   display: inline-block;
   position: absolute;
   background-color: white;
-  padding: 3px;
+  padding: 2px;
   box-shadow: rgba(0,0,0,0.4) 0 1px 3px;
   background-color: $primary-color;
+  @include gradient(lighten($primary-color, 10%), $primary-color);
+
   border-radius: 4px;
   
   .popover_nipple {
@@ -12,13 +14,14 @@
     position: absolute;
     border-width: 0 6px 6px;
     border-style: solid;
-    border-color: $primary-color transparent;
+    border-color: lighten($primary-color, 10%) transparent;
     display: block;
     top: -6px;
   }
   
   .popover_contents {
     display: block;
+		border: solid 1px #63686e;
     background-color: #FFF;
     border-radius: 4px;
     margin: 0;
@@ -34,12 +37,13 @@
   ul.popover_contents {
     list-style-type: none;
     padding: 0;
-  
+		
     li {
       display: block;
       border-bottom: solid 1px #ebebeb;
-    
+
       a {
+				@include box-sizing(padding-box);
         display: block;
         font-size: 0.95em;
         font-weight: bold;
@@ -47,7 +51,8 @@
         text-decoration: none;
         text-align: center;
         -webkit-font-smoothing: antialiased;
-        
+        z-index: 0;
+
         &:hover {
           @include highlight-gradient;
           @include text-shadow(#5a83aa);
@@ -61,8 +66,20 @@
       
       }
     
-      &:last-child {
-        border: none;
+			&:last-child {
+				border: none;
+        
+				a {
+					border-bottom-right-radius: 2px;
+					border-bottom-left-radius: 2px;
+				}
+      }
+
+      &:first-child {
+				a {
+					border-top-right-radius: 2px;
+					border-top-left-radius: 2px;
+				}
       }
     }
   }

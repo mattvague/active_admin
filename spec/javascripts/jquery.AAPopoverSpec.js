@@ -40,6 +40,21 @@ describe("AAPopover", function() {
         expect(this.$popover).toContain(".popover_nipple");
       });
     });
+
+		describe("the plugin", function() {
+			it("should save access to the object in data", function() {
+			  expect(this.$button).toHaveData("AAPopover");
+			});
+			
+		  it("should prevent reinitialization", function() {
+				var	AAPopover1 = this.$button.data('AAPopover');
+				this.$button.AAPopover();
+				
+				var	AAPopover2 = this.$button.data('AAPopover');
+				
+				expect(AAPopover1).toEqual(AAPopover2);
+		  });
+		});
   });
   
   describe("when open is called", function() {
