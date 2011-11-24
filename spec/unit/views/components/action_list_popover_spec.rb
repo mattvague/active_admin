@@ -6,9 +6,8 @@ describe ActiveAdmin::Views::ActionListPopover do
 
   let(:the_popover) do
     action_list_popover :id => "my_awesome_action_list_popover" do
-      action ActiveAdmin::BatchAction.new( :action_1, "Action 1" )
-      action ActiveAdmin::BatchAction.new( :action_2, "Action 2" )
-      action ActiveAdmin::BatchAction.new( :action_3, "Action 3" )
+      action "My First Great Action", "#"
+      action "My Second Great Action", "http://www.google.com"
     end
   end
   
@@ -23,9 +22,8 @@ describe ActiveAdmin::Views::ActionListPopover do
 
     its(:tag_name) { should eql("ul") }
     
-    its(:content){ should include("<li><a href=\"#\" class=\"batch_action\" data-action=\"action_1\">Action 1 Selected</a></li>") }
-    its(:content){ should include("<li><a href=\"#\" class=\"batch_action\" data-action=\"action_2\">Action 2 Selected</a></li>") }
-    its(:content){ should include("<li><a href=\"#\" class=\"batch_action\" data-action=\"action_3\">Action 3 Selected</a></li>") }
+    its(:content){ should include("<li><a href=\"#\">My First Great Action</a></li>") }
+    its(:content){ should include("<li><a href=\"http://www.google.com\">My Second Great Action</a></li>") }
     
   end
 
