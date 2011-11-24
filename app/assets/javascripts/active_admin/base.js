@@ -1,5 +1,6 @@
 //= require "active_admin/vendor"
-//= require "active_admin/jquery.AAPopover.js"
+//= require "active_admin/jquery.aa.popover.js"
+//= require "active_admin/batch_actions.js"
 
 /* Active Admin JS */
 
