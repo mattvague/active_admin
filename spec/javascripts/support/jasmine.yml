@@ -12,7 +12,8 @@
 #
 src_files:
   - app/assets/javascripts/active_admin/vendor.js
-  - app/assets/javascripts/active_admin/jquery.AAPopover.js
+  - app/assets/javascripts/active_admin/jquery.aa.popover.js
+  - app/assets/javascripts/active_admin/jquery.aa.actionListPopover.js
 
 # stylesheets
 #
