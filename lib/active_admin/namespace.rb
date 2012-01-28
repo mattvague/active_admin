@@ -40,7 +40,6 @@ module ActiveAdmin
       @resources = ResourceCollection.new
       @menu = Menu.new
       register_module unless root?
-      generate_dashboard_controller
     end
 
     # Register a resource into this namespace. The preffered method to access this is to 
@@ -53,9 +52,6 @@ module ActiveAdmin
       register_resource_controller(config)
       parse_registration_block(config, &block) if block_given?
       register_with_menu(config) if config.include_in_menu?
-
-      # Ensure that the dashboard is generated
-      generate_dashboard_controller
 
       # Dispatch a registration event
       ActiveAdmin::Event.dispatch ActiveAdmin::Resource::RegisterEvent, config
@@ -132,12 +128,20 @@ module ActiveAdmin
     end
 
     def build_page(name, options)
-      resources.add Page.new(self, name, options)
+      page = Page.new(self, name, options)
+      page.menu(:priority => options[:menu_item_priority]) if options[:menu_item_priority]
+
+      resources.add page
     end
 
 
     def register_page_controller(config)
-      eval "class ::#{config.controller_name} < ActiveAdmin::PageController; end"
+      begin
+        config.controller
+      rescue NameError
+        eval "class ::#{config.controller_name} < ActiveAdmin::PageController; end"
+      end
+
       config.controller.active_admin_config = config
     end
 
@@ -185,16 +189,10 @@ module ActiveAdmin
     def parse_page_registration_block(config, &block)
       page_dsl.run_registration_block(config, &block)
     end
-
-    # Creates a dashboard controller for this config
-    def generate_dashboard_controller
-      eval "class ::#{dashboard_controller_name} < ActiveAdmin::Dashboards::DashboardController; end"
-    end
-
+   
     # Adds the dashboard to the menu
     def register_dashboard
-      dashboard_path = root? ? :dashboard_path : "#{name}_dashboard_path".to_sym
-      menu.add(I18n.t("active_admin.dashboard"), dashboard_path, 1) unless menu[I18n.t("active_admin.dashboard")]
+      register_page("Dashboard", :menu_item_priority => 1)
     end
 
     # Does all the work of registernig a config with the menu system
