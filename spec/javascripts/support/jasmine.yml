@@ -12,9 +12,8 @@
 #
 src_files:
   - spec/javascripts/support/jquery.min.js
-  - spec/javascripts/support/jquery-ui-1.8.16.custom.min.js
-  - app/assets/javascripts/active_admin/compiled/lib/**/*.js
-  - app/assets/javascripts/active_admin/compiled/components/**/*.js
+  - spec/javascripts/support/jquery-ui-1.8.17.custom.min.js
+  - app/assets/javascripts/active_admin/application.js
 
 # stylesheets
 #
