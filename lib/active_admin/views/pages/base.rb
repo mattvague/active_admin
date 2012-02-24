@@ -41,6 +41,7 @@ module ActiveAdmin
               build_page_content
               build_footer
             end
+            build_extra_content
           end
         end
 
@@ -125,6 +126,10 @@ module ActiveAdmin
         # Renders the content for the footer
         def build_footer
           insert_tag view_factory.footer
+        end
+
+        def build_extra_content
+          # Put popovers, etc here 
         end
 
       end
