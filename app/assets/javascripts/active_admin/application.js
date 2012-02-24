@@ -5,6 +5,19 @@
 }).call(this);
 (function() {
 
+  window.AA.getCookie = AA.getCookie = function(cookieName) {
+    var results;
+    results = document.cookie.match('(^|;) ?' + cookieName + '=([^;]*)(;|$)');
+    if (results) {
+      return unescape(results[2]);
+    } else {
+      return null;
+    }
+  };
+
+}).call(this);
+(function() {
+
   window.AA.CheckboxToggler = AA.CheckboxToggler = (function() {
 
     function CheckboxToggler(options, container) {
@@ -237,14 +250,67 @@
 }).call(this);
 (function() {
 
+  window.AA.Tabs = AA.Tabs = (function() {
+
+    function Tabs(options, container) {
+      this.options = options;
+      this.container = container;
+      this.container = $(this.container);
+      this._init();
+    }
+
+    Tabs.prototype._init = function() {
+      var _this = this;
+      this.tabs = this.container.find(".tab");
+      this.tabs.filter("*[data-tab-id=" + this._selectedTab() + "]").addClass("current");
+      this.tabContentAreas = this.container.find(".tab_contents");
+      this.tabContentAreas.hide();
+      this.tabContentAreas.filter("*[data-tab-content-id=" + this._selectedTab() + "]").show();
+      return this.container.on("click", ".tab a", function(e) {
+        var expiryDate, oneYearLater, tab, tabID, theDate;
+        tab = $(e.target);
+        tabID = tab.parent("li").data("tab-id");
+        theDate = new Date();
+        oneYearLater = new Date(theDate.getTime() + 31536000000);
+        expiryDate = oneYearLater.toGMTString();
+        document.cookie = _this.container.attr("id") + "=" + tabID + "; expires= " + expiryDate + "; path=/";
+        _this.tabs.each(function() {
+          return $(this).removeClass("current");
+        });
+        tab.parent("li").addClass("current");
+        _this.tabContentAreas.hide();
+        return _this.tabContentAreas.filter("*[data-tab-content-id=" + tabID + "]").show();
+      });
+    };
+
+    Tabs.prototype._selectedTab = function() {
+      if (AA.getCookie(this.container.attr("id"))) {
+        return AA.getCookie(this.container.attr("id"));
+      } else {
+        return 1;
+      }
+    };
+
+    return Tabs;
+
+  })();
+
+  (function($) {
+    return $.widget.bridge('tabs', AA.Tabs);
+  })(jQuery);
+
+}).call(this);
+(function() {
+
   $(function() {
     $(".datepicker").datepicker({
       dateFormat: "yy-mm-dd"
     });
-    return $(".clear_filters_btn").click(function() {
+    $(".clear_filters_btn").click(function() {
       window.location.search = "";
       return false;
     });
+    return $(".tabbed_panel").tabs();
   });
 
 }).call(this);
@@ -286,6 +352,7 @@
   });
 
 }).call(this);
+
 
 
 

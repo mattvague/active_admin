@@ -1,6 +1,70 @@
-// ----------------------------------- Helper class to apply to elements to make them sections
-.section, .panel{ @include section; }
+.panel { 
 
-// ----------------------------------- Sidebar Sections 
+  @include section-background;
+  margin-bottom: 20px;
+  
+  > h3, .panel_header { @include section-header; }
+  
+  > div { padding: 3px $section-padding $section-padding $section-padding; }
+  
+  hr {
+    border: none;
+    border-bottom: 1px solid #E8E8E8;
+  }
 
-.sidebar_section { @include section; }
+}
+
+.panel.tabbed_panel {
+  > ul.panel_header {
+    list-style: none;
+    padding-left: 6px;
+    height: 30px;
+  }
+
+  li.tab {
+    display: inline-block;
+    margin-right: -4px;
+    
+    a {
+      box-shadow: 0 1px rgba(255,255,255,0.8) inset, 0 1px 0px rgba(255,255,255,0.8);
+      @include gradient(rgba(255,255,255, 0.5), rgba(255,255,255, 0.3));
+      border: solid 1px #C3C3C3;
+      @include border-colors(#C9C9C9, #C5C5C5, #C3C3C3);  
+      color: $section-header-text-color;
+      display: block;
+      font-size: 0.95em;
+      line-height: 0.9em;
+      padding: 5px 10px 4px;
+      position: relative;
+      text-decoration: none;
+      top: -1px;    
+    }
+
+    &:not(.current) {
+      & a:hover {
+        @include gradient(rgba(255,255,255, 0.9), rgba(255,255,255, 0.6));
+      }
+
+      & a:active {
+        background-color: rgba(0,0,0,0.13);
+        box-shadow: 0 1px rgba(255,255,255,0.8), 0 1px 0px rgba(0,0,0,0.052) inset;
+      }
+    }
+
+    &:first-child a {
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+
+    &:last-child a {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+
+    &.current a {
+      background-color: rgba(0,0,0,0.13);
+      box-shadow: 0 1px rgba(255,255,255,0.8), 0 1px 0px rgba(0,0,0,0.052) inset;
+    }
+  }
+}
+
