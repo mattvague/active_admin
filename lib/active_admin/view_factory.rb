@@ -13,7 +13,7 @@ module ActiveAdmin
               :footer               => ActiveAdmin::Views::Footer,
               :dashboard_section    => ActiveAdmin::Views::DashboardSection,
               :index_scopes         => ActiveAdmin::Views::Scopes,
-              :blank_slate          => ActiveAdmin::Views::BlankSlate
+              :blank_slate          => ActiveAdmin::Views::BlankSlate,
               :popover              => ActiveAdmin::Views::Popover,
               :action_list_popover  => ActiveAdmin::Views::ActionListPopover,
               :batch_action_popover => ActiveAdmin::Views::BatchActionPopover
